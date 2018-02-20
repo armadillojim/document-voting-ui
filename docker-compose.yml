@@ -1,0 +1,46 @@
+version: '3'
+
+services:
+    client:
+        build: ./client
+        container_name: document-voting-client
+        volumes:
+            - /document-voting-client/node_modules
+            - ./client:/document-voting-client
+
+    api:
+        build: ./api
+        container_name: document-voting-api
+        environment:
+            API_PORT: $API_PORT
+            DB_NAME: $DB_NAME
+            DOCUMENTS_COLLECTION: $DOCUMENTS_COLLECTION
+            VOTES_COLLECTION: $VOTES_COLLECTION
+            NODE_ENV: development
+        volumes:
+            - /document-voting-api/node_modules
+            - ./api:/document-voting-api
+
+    nginx:
+        build:
+            context: ./nginx
+            args:
+                API_PORT: $API_PORT
+        container_name: document-voting-nginx
+        depends_on:
+            - api
+            - client
+        ports:
+            - 80:80
+        volumes:
+            - ./client:/var/www/html
+
+    db:
+        image: mongo:3.6
+        container_name: document-voting-db
+        environment:
+            DB_NAME: $DB_NAME
+            DOCUMENTS_COLLECTION: $DOCUMENTS_COLLECTION
+            VOTES_COLLECTION: $VOTES_COLLECTION
+        volumes:
+            - ./db:/db
