@@ -47,13 +47,18 @@ Promise.all([
     listen(),
     initDb()
 ]).then(([_, pool]) => {
+
     // Install all our middleware
+    const commonComponent = require('./components/common')(logger);
+    app.use(commonComponent);
+
     // Install two default handlers for missing resources and for errors
     app.use('*', (err, req, res, next) => { res.sendStatus(404); });
     app.use((err, req, res, next) => {
         logger.error(`api-server got an error: ${err.message}\n${err.stack}`);
         res.sendStatus(500);
     });
+
 })
 .catch(err => {
     logger.error(err);
