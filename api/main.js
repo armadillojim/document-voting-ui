@@ -4,11 +4,14 @@ const app = express();
 
 // Create a logging facility
 const winston = require('winston');
+const simpleFormat = winston.format.printf((info) => {
+  return `${info.timestamp} ${info.level}: ${info.message}`;
+});
 const logger = winston.createLogger({
     format: winston.format.combine(
         winston.format.timestamp(),
         winston.format.colorize(),
-        winston.format.simple()
+        simpleFormat
     ),
     transports: [new winston.transports.Console()]
 });
