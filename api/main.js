@@ -5,7 +5,7 @@ const app = express();
 // Create a logging facility
 const winston = require('winston');
 const simpleFormat = winston.format.printf((info) => {
-  return `${info.timestamp} ${info.level}: ${info.message}`;
+    return `${info.timestamp} ${info.level}: ${info.message}`;
 });
 const logger = winston.createLogger({
     format: winston.format.combine(
@@ -26,7 +26,7 @@ const listen = () => {
             resolve();
         });
     });
-}
+};
 
 // Create a database promise for a connection
 const mongoClient = require('mongodb').MongoClient;
@@ -34,7 +34,7 @@ const dbUrl = 'mongodb://document-voting-db:27017';
 const dbName = process.env.DB_NAME;
 const initDb = () => {
     return new Promise((resolve, reject) => {
-        mongoClient.connect(dbUrl, function(err, client) {
+        mongoClient.connect(dbUrl, (err, client) => {
             if (err) {
                 reject(err);
             } else {
@@ -43,26 +43,30 @@ const initDb = () => {
             }
         });
     });
-}
+};
 
 // Start the listener and the database connection
 Promise.all([
     listen(),
     initDb()
-]).then(([_, pool]) => {
+]).then(([_, db]) => {
 
     // Install all our middleware
     const commonComponent = require('./components/common')(logger);
     app.use(commonComponent);
+    const documentComponent = require('./components/document')(db);
+    app.use('/document', documentComponent);
 
     // Install two default handlers for missing resources and for errors
-    app.use('*', (err, req, res, next) => { res.sendStatus(404); });
+    app.use('*', (req, res, next) => { res.sendStatus(404); });
     app.use((err, req, res, next) => {
-        logger.error(`api-server got an error: ${err.message}\n${err.stack}`);
-        res.sendStatus(500);
+        const replacer = err instanceof Error ? Object.getOwnPropertyNames(err) : null;
+        logger.error('api-server got an error: ' + JSON.stringify(err, replacer, 4));
+        const status = err.status || 500;
+        const message = err.message || 'Unknown error';
+        res.status(status).send(message);
     });
 
-})
-.catch(err => {
+}).catch((err) => {
     logger.error(err);
 });
