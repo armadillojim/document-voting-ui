@@ -56,6 +56,8 @@ Promise.all([
     app.use(commonComponent);
     const documentComponent = require('./components/document')(db);
     app.use('/document', documentComponent);
+    const statusComponent = require('./components/status')(db);
+    app.use('/status', statusComponent);
 
     // Install two default handlers for missing resources and for errors
     app.use('*', (req, res, next) => { res.sendStatus(404); });
