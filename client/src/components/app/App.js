@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 
 import Status from '../status/Status';
+import Voting from '../voting/Voting';
 
 class App extends Component {
   render() {
@@ -14,6 +15,7 @@ class App extends Component {
         </header>
         <div className="App-intro">
           <Status />
+          <Voting />
         </div>
       </div>
     );
