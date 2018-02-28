@@ -9,11 +9,11 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
+        <div className="jumbotron text-center">
           <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to voting!</h1>
-        </header>
-        <div className="App-intro">
+          <h1>Welcome to voting!</h1>
+        </div>
+        <div className="container">
           <Status />
           <Voting />
         </div>

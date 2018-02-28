@@ -1,6 +1,9 @@
 .Document {
   text-align: left;
   overflow: scroll;
-  width: 75%;
   height: 17em;
+}
+
+.Document pre {
+  min-height: 17em;
 }

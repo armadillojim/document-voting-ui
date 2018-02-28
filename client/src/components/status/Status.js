@@ -7,34 +7,36 @@ class StatusTable extends Component {
     const totalBreakdown = this.props.statusData.totalBreakdown;
     const resolvedBreakdown = this.props.statusData.resolvedBreakdown;
     return (
-      <table>
-        <thead>
-          <tr>
-            <th rowSpan="2">Total</th>
-            <th colSpan="4">Total Breakdown</th>
-            <th colSpan="2">Resolved Breakdown</th>
-          </tr>
-          <tr>
-            <th>None</th>
-            <th>One</th>
-            <th>Ambiguous</th>
-            <th>Resolved</th>
-            <th>Unanimous</th>
-            <th>Mixed</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>{total}</td>
-            <td>{totalBreakdown.none}</td>
-            <td>{totalBreakdown.one}</td>
-            <td>{totalBreakdown.ambiguous}</td>
-            <td>{totalBreakdown.resolved}</td>
-            <td>{resolvedBreakdown.unanimous}</td>
-            <td>{resolvedBreakdown.mixed}</td>
-          </tr>
-        </tbody>
-      </table>
+      <div className="table-responsive">
+        <table className="table table-bordered col-md-11">
+          <thead>
+            <tr>
+              <th rowSpan="2">Total</th>
+              <th colSpan="4">Total Breakdown</th>
+              <th colSpan="2">Resolved Breakdown</th>
+            </tr>
+            <tr>
+              <th>None</th>
+              <th>One</th>
+              <th>Ambiguous</th>
+              <th>Resolved</th>
+              <th>Unanimous</th>
+              <th>Mixed</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{total}</td>
+              <td>{totalBreakdown.none}</td>
+              <td>{totalBreakdown.one}</td>
+              <td>{totalBreakdown.ambiguous}</td>
+              <td>{totalBreakdown.resolved}</td>
+              <td>{resolvedBreakdown.unanimous}</td>
+              <td>{resolvedBreakdown.mixed}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     );
   }
 }
@@ -51,7 +53,7 @@ class StatusButton extends Component {
 
   render() {
     return (
-      <button onClick={this.handleButtonClick}>
+      <button onClick={this.handleButtonClick} className="col-md-1">
         Refresh Status
       </button>
     );
@@ -78,7 +80,7 @@ class Status extends Component {
 
   render() {
     return (
-      <div className="Status">
+      <div className="Status row">
         <StatusButton onButtonClick={this.handleButtonClick} />
         <StatusTable statusData={this.state} />
       </div>

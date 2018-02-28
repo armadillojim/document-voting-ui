@@ -51,8 +51,10 @@ class Voting extends Component {
   render() {
     return (
       <div className="Voting">
-        <Buttons active={!!this.state.currentDocument} onButtonClick={this.handleButtonClick} />
-        <Document document={this.state.currentDocument} />
+        <div className="row">
+          <Buttons active={!!this.state.currentDocument} onButtonClick={this.handleButtonClick} />
+          <Document document={this.state.currentDocument} />
+        </div>
         <DocumentTable length={10} ref={ table => this.documentTable = table } />
       </div>
     );

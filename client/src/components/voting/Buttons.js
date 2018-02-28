@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import './Buttons.css';
 
 const buttonLabels = [
-  { vote: 'yes',   label: 'Yes, this is porn.' },
-  { vote: 'no',    label: 'No, this is not porn.' },
-  { vote: 'maybe', label: 'Maybe this is porn.' },
-  { vote: 'skip',  label: 'Skip this item.' }
+  { btnClass: 'btn-danger',  vote: 'yes',   label: 'Yes, this is porn.' },
+  { btnClass: 'btn-success', vote: 'no',    label: 'No, this is not porn.' },
+  { btnClass: 'btn-warning', vote: 'maybe', label: 'Maybe this is porn.' },
+  { btnClass: 'btn-default', vote: 'skip',  label: 'Skip this item.' }
 ];
 
 class Button extends Component {
@@ -19,10 +19,11 @@ class Button extends Component {
   }
 
   render() {
+    const btnClass = `btn ${this.props.btnClass}`;
     return (
-      <button disabled={!this.props.active} onClick={this.handleButtonClick}>
-        <span className="vote">{this.props.vote}</span>
-        <span className="label">{this.props.label}</span>
+      <button disabled={!this.props.active} onClick={this.handleButtonClick} className={btnClass}>
+        <span className="text-uppercase h2">{this.props.vote}</span>
+        <span className="text-muted small">{this.props.label}</span>
       </button>
     )
   }
@@ -43,7 +44,7 @@ class Buttons extends Component {
       <Button key={buttonLabel.vote} {...buttonLabel} active={this.props.active} onButtonClick={this.handleButtonClick} />
     ));
     return (
-      <div className="Buttons">
+      <div className="Buttons col-md-3">
         {buttons}
       </div>
     );

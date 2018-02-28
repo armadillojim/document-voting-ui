@@ -17,3 +17,16 @@
 .DocumentTable td.status {
   width: 5%;
 }
+
+.DocumentTable td.status.ok {
+  background-image: url(images/1f34f.svg);
+  background-repeat:no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+.DocumentTable td.status.fail {
+  background-image: url(images/1f6d1.svg);
+  background-repeat:no-repeat;
+  background-position: center;
+  background-size: contain;
+}

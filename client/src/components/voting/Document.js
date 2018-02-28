@@ -6,7 +6,7 @@ class Document extends Component {
     const data = this.props.document.files;
     const json = data ? JSON.stringify(data, null, 4) : null;
     return (
-      <div className="Document">
+      <div className="Document col-md-9">
         <pre>{json}</pre>
       </div>
     );
