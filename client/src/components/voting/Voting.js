@@ -35,8 +35,8 @@ class Voting extends Component {
     }
     fetch('/api/document/' + currentDocument._id, options)
       .then(this.checkResponse)
-      .then(data => { this.documentTable.pushDocument(currentDocument, true); })
-      .catch(err => { this.documentTable.pushDocument(currentDocument, false); console.error(err); });
+      .then(data => { this.documentTable.pushDocument(currentDocument, vote, true); })
+      .catch(err => { this.documentTable.pushDocument(currentDocument, vote, false); console.error(err); });
   }
 
   handleButtonClick(vote) {

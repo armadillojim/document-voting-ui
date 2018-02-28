@@ -11,7 +11,7 @@ module.exports = function DocumentRouter(documentController) {
     });
     router.put('/:id', (req, res, next) => {
         documentController.voteDocument(req.params.id, req.body)
-            .then(() => { res.sendStatus(200); })
+            .then(() => { res.status(200).send('"OK"'); })
             .catch(next);
     });
 

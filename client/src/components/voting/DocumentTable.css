@@ -1,0 +1,19 @@
+.DocumentTable td {
+  max-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.DocumentTable td.id {
+  width: 20%;
+}
+.DocumentTable td.snippet {
+  width: 70%;
+}
+.DocumentTable td.vote {
+  width: 5%;
+}
+.DocumentTable td.status {
+  width: 5%;
+}
