@@ -40,7 +40,7 @@ class Voting extends Component {
   }
 
   handleButtonClick(vote) {
-    this.voteDocument(vote);
+    if (vote !== 'skip') { this.voteDocument(vote); }
     this.getDocument();
   }
 
