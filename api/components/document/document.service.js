@@ -26,7 +26,8 @@ module.exports = function(db) {
         const isId = typeof(id)==='string' && id.length===40 && hexadecimal.test(id);
         const isVote = typeof(vote)==='string' && labels.includes(vote);
         if (!(isId && isVote)) { throw { status:400, message:'bad parameter to PUT /document/:id' }; }
-        await documents.updateOne({_id:id}, { $inc: { [`votes.${vote}`]:1 }});
+        const updateResult = await documents.updateOne({_id:id}, { $inc: { [`votes.${vote}`]:1 }});
+        if (!(updateResult.result.ok && updateResult.modifiedCount===1)) { throw { status:500, message:'failed to record vote' }; }
         await votes.insertOne({ doc_id:id, timestamp:Date.now(), value:vote });
         return;
     };
