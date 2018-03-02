@@ -6,7 +6,7 @@ class DocumentTableRow extends Component {
     const id = this.props._id;
     const snippet = JSON.stringify(this.props.files);
     const vote = this.props.vote;
-    const status = this.props.status ? 'ok success' : 'fail danger';
+    const status = this.props.status ? 'success' : 'danger';
     return (
       <tr>
         <td className="id">{id}</td>

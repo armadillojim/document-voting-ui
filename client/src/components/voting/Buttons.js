@@ -19,7 +19,7 @@ class Button extends Component {
   }
 
   render() {
-    const btnClass = `btn ${this.props.btnClass}`;
+    const btnClass = `btn ${this.props.btnClass} col-md-6`;
     return (
       <button disabled={!this.props.active} onClick={this.handleButtonClick} className={btnClass}>
         <span className="text-uppercase h2">{this.props.vote}</span>

@@ -18,13 +18,13 @@
   width: 5%;
 }
 
-.DocumentTable td.status.ok {
+.DocumentTable td.status.success {
   background-image: url(images/1f34f.svg);
   background-repeat:no-repeat;
   background-position: center;
   background-size: contain;
 }
-.DocumentTable td.status.fail {
+.DocumentTable td.status.danger {
   background-image: url(images/1f6d1.svg);
   background-repeat:no-repeat;
   background-position: center;
