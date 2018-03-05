@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Mousetrap from 'mousetrap';
 import './Buttons.css';
 
 const buttonLabels = [
@@ -16,6 +17,16 @@ class Button extends Component {
 
   handleButtonClick() {
     this.props.onButtonClick(this.props.vote);
+  }
+
+  componentDidMount() {
+    const voteCharacter = this.props.vote[0];
+    Mousetrap.bind(voteCharacter, this.handleButtonClick);
+  }
+
+  componentWillUnmount() {
+    const voteCharacter = this.props.vote[0];
+    Mousetrap.unbind(voteCharacter, this.handleButtonClick);
   }
 
   render() {
