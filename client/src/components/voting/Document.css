@@ -7,3 +7,10 @@
 .Document pre {
   min-height: 17em;
 }
+
+.Document button {
+  z-index: 1;
+  position: absolute;
+  top: 0.5em;
+  right: 1.5em;
+}

@@ -9,6 +9,7 @@ services:
         environment:
             PORT: $CLIENT_PORT
             NODE_ENV: development
+            REACT_APP_TRANSLATION_SERVICE: $TRANSLATION_SERVICE
         volumes:
             - /document-voting-client/node_modules
             - ./client:/document-voting-client
